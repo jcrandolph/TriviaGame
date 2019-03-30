@@ -141,7 +141,8 @@ var timer = {
         timer.time--;
          $("#timerDisplay").html("Timer: " + timer.time);
 
-        if (timer.time < 0) {
+        if (timer.time == 0) {
+            
             ("#resultMessage").show();
             ("#timerDisplay").hide();
             (".ansbtn").hide();

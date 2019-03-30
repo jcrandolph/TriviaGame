@@ -1,5 +1,5 @@
 h1 {
-    color: darkblue; text-align: center; font-size: 75px
+    color: darkblue; text-align: center; font-size: 75px; text-shadow: 1px 1px white;
 }
 
 #sunglasses {  width: 150px;
@@ -8,10 +8,15 @@ h1 {
 }
 
 .jumbotron {
-    background-color: darkblue
+    background-color: darkblue; color: white;
 }
 
 body {
     background-image: url("../images/background.jpg");
 }
+
+.ansbtn {
+    margin: 5px;
+}
+
 
