@@ -139,7 +139,7 @@ var timer = {
     time: 10,
     reset: function () {
         timer.time = 10;
-        $("#timerDisplay").html("Timer: " + "10");
+        $("#timerDisplay").html("<h4>Timer: " + "10</h4>");
     },
 
     start: function () {
@@ -152,7 +152,7 @@ var timer = {
 
     count: function () {
         timer.time--;
-         $("#timerDisplay").html("Timer: " + timer.time);
+         $("#timerDisplay").html("<h4>Timer: " + timer.time + "</h4>");
 
         if (timer.time == 0) {
             
