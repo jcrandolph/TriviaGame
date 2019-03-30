@@ -1,0 +1,17 @@
+h1 {
+    color: darkblue; text-align: center; font-size: 75px
+}
+
+#sunglasses {  width: 150px;
+    height:auto
+    
+}
+
+.jumbotron {
+    background-color: darkblue
+}
+
+body {
+    background-image: url("../images/background.jpg");
+}
+

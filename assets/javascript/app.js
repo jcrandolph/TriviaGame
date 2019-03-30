@@ -86,14 +86,14 @@ function nextQuestion() {
         displayQuestion();
         $("#resultMessage").hide();
         $("#timerDisplay").show();
-        $(".btn").show();
+        $(".ansbtn").show();
         timer.stop();
         timer.reset();
         timer.start();
     }
     //game over
     else {
-        $("#quizMessage").hide();
+        $("#resultMessage").hide();
         $("#question").hide();
         $("#score").html("<div>" + "Game Over! <br> Your Score" + "</div>" +
             "<div>" + "Correct Guesses: " + score.correctAnswers + "</div>" +
@@ -101,7 +101,7 @@ function nextQuestion() {
             "<div>" + "Missed Questions: " + scores.missedAnswers + "</div>"
         );
         timer.stop();
-        $("#timerDisplay").html("00:00");
+        $("#timerDisplay").html("00");
 
         $("#reset").show();
 
@@ -110,7 +110,7 @@ function nextQuestion() {
             resetScores();
             displayQuestion();
             $("#question").show();
-            $(".btn").show();
+            $(".ansbtn").show();
             $("#timerDisplay").show();
             timer.stop();
             timer.reset();
@@ -119,12 +119,14 @@ function nextQuestion() {
         });
     }
 }
+
+
 //countdown timer
 var timer = {
     time: 10,
     reset: function () {
         timer.time = 10;
-        $("#timerDisplay").html("Timer: " + "00:10");
+        $("#timerDisplay").html("Timer: " + "10");
     },
 
     start: function () {
@@ -137,60 +139,46 @@ var timer = {
 
     count: function () {
         timer.time--;
-        var converted = timer.timeConverter(timer.time);
-        $("#timerDisplay").html("Timer: " + converted);
+         $("#timerDisplay").html("Timer: " + timer.time);
 
-        if (timer.time == 0) {
+        if (timer.time < 0) {
             ("#resultMessage").show();
             ("#timerDisplay").hide();
-            (".btn").hide();
+            (".ansbtn").hide();
             ("#resultMessage").html("<h2><p>Times Up! <br> The correct answer is: <br>" + questionArray[indexQuestion].answer + "</p></h2>");
             scores.missedAnswers++;
             setTimeout(nextQuestion, 3000);
         }
     },
-    //dont like this
-    timeConverter: function (t) {
-        var minutes = Math.floor(t / 60);
-        var seconds = t - (minutes * 60);
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-        if (minutes === 0) {
-            minutes = "00";
-        } else if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        return minutes + ":" + seconds;
-    }
+    
 }
 //display question
 function displayQuestion() {
-    $("#question").html("<h3>" + questionsArray[indexQuestion].question + "</h3>");
-    $("#button0").text(questionsArray[indexQuestion].choices[0]);
-    $("#button1").text(questionsArray[indexQuestion].choices[1]);
-    $("#button2").text(questionsArray[indexQuestion].choices[2]);
-    $("#button3").text(questionsArray[indexQuestion].choices[3]);
+    $("#question").html("<h3>" + questionArray[indexQuestion].question + "</h3>");
+    $("#button0").text(questionArray[indexQuestion].choices[0]);
+    $("#button1").text(questionArray[indexQuestion].choices[1]);
+    $("#button2").text(questionArray[indexQuestion].choices[2]);
+    $("#button3").text(questionArray[indexQuestion].choices[3]);
 }
 
 //start game!!
 $(document).ready(function () {
     //hide start divs
     $("#timerDisplay").hide();
-    $(".btn").hide();
-    $("#reset").hide();
+    $(".ansbtn").hide();
+    $("#resetId").hide();
     //show game divs
     $("#startme").on("click", function () {
         displayQuestion();
         timer.reset();
         timer.start();
         $('#timerDisplay').show();
-        $('.btn').show();
-        $("#reset").hide();
+        $('.ansbtn').show();
+        $("#resetId").hide();
         $("#startme").hide();
     });
     //check answer
-    (".btn").click(function() {
+    ('.btn').click(function() {
         if (indexQuestion < questionArray.length){
             var userButtonValue= ($(this).attr("data-value"));
             if (userButtonValue == questionArray[indexQuestion].correctIndex) {
@@ -208,7 +196,7 @@ $(document).ready(function () {
             }
             $("#resultMessage").show();
             $("#timerDisplay").hide();
-            $(".btn").hide();
+            $(".ansbtn").hide();
 
             setTimeout(nextQuestion, 3000);
         }
